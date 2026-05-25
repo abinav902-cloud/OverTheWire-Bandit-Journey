@@ -59,3 +59,8 @@ Key Takeaways: Learned how to bypass unreadable binary gibberish by using the st
 .
 Command: strings data.txt | grep "==="
 Password Captured: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+**Bandit Level 10 → Level 11**
+*   **Goal:** Decode a password stored in `data.txt` which contains Base64 encoded data.
+*   **Key Takeaways:** Learned the difference between raw data and encoded strings. Mastered using the `base64` utility with the `-d` (decode) flag to reveal hidden information.
+*   **Command:** `base64 -d data.txt`
+*   **Password Captured:** `dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr`
