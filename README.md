@@ -63,4 +63,21 @@ Password Captured: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 *   **Goal:** Decode a password stored in `data.txt` which contains Base64 encoded data.
 *   **Key Takeaways:** Learned the difference between raw data and encoded strings. Mastered using the `base64` utility with the `-d` (decode) flag to reveal hidden information.
 *   **Command:** `base64 -d data.txt`
-*   **Password Captured:** `dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr`
+*   **Password Captured:** `dtR173fZKb0RRsDFSGsg2RWnpNVj3qR`
+*   **Bandit Level 11 → Level 12**
+*   **Goal:** Decrypt a password from `data.txt` using character rotation (ROT13).
+*   **Key Takeaways:** Mastered the `tr` command for character-by-character translation. Learned how to create custom mapping rules to reverse simple substitution ciphers.
+*   **Command:** `cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'`
+*   **Password Captured:** `7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4`
+*   **Bandit Level 12 → Level 13**
+*   **Goal:** Recover a password from a hexdump that has been repeatedly compressed.
+*   **Difficulties Overcome:** Navigated a "Russian Nesting Doll" of file formats. Managed permissions by creating a workspace in `/tmp`.
+*   **Key Takeaways:** 
+    *   Mastered `xxd -r` to revert hexdumps to binary [5].
+    *   Used `file` to identify nested compression layers [4].
+    *   Chained `gzip -d`, `bzip2 -d`, and `tar -xf` for multi-stage extraction [5].
+*   **Command Sequence:** 
+    1. `xxd -r data.txt > data_binary`
+    2. `file data_binary` (Iterative identification)
+    3. `mv [file] [extension] && [tool] -d [file]` (Iterative extraction)
+*   **Password Captured:** `FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn`
