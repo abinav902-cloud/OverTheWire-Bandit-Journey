@@ -81,3 +81,15 @@ Password Captured: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
     2. `file data_binary` (Iterative identification)
     3. `mv [file] [extension] && [tool] -d [file]` (Iterative extraction)
 *   **Password Captured:** `FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn`
+Bandit Level 13 → Level 14
+Goal: Use the private SSH key found in the home directory (~/sshkey.private) to authenticate as user bandit14 and retrieve the password stored in /etc/bandit_pass/bandit14
+.
+Key Takeaways:
+Identity-Based Authentication: Mastered the use of the ssh -i flag to log in using a cryptographic private key instead of a text password
+.
+Security Wall Bypass: Successfully navigated a server-side restriction that blocks internal localhost connections to port 2220 ("blocked to conserve resources") .
+Credential Exfiltration: Learned to "pivot" by extracting the private key text and recreating it on a local workstation to connect as an external user .
+Strict Permissions: Learned that SSH ignores private keys that are "too open." Using chmod 600 is mandatory to satisfy security protocols
+.
+Command: ssh -i bandit14.key bandit14@bandit.labs.overthewire.org -p 2220 
+Password Captured: MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS 
