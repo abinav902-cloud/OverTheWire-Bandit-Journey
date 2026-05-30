@@ -93,3 +93,15 @@ Strict Permissions: Learned that SSH ignores private keys that are "too open." U
 .
 Command: ssh -i bandit14.key bandit14@bandit.labs.overthewire.org -p 2220 
 Password Captured: MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS 
+Bandit Level 14 → Level 15
+Goal: Retrieve the password for Level 15 by submitting the current Level 14 password to a service listening on Port 30000 of localhost
+.
+Key Takeaways:
+Network Interaction: Learned to use Netcat (nc) to establish direct TCP connections to specific network ports
+.
+Service Communication: Understood the concept of localhost as the current machine and how to "talk" to background services
+.
+Protocol Reliability: Used the TCP protocol for a reliable data transfer during the authentication handshake
+.
+Command: nc localhost 30000
+Password Captured: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo 
