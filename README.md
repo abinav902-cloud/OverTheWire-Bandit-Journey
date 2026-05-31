@@ -104,4 +104,16 @@ Service Communication: Understood the concept of localhost as the current machin
 Protocol Reliability: Used the TCP protocol for a reliable data transfer during the authentication handshake
 .
 Command: nc localhost 30000
-Password Captured: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo 
+Password Captured: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+Bandit Level 15 → Level 16
+Goal: Retrieve the Level 16 password by submitting the current password to a service listening on Port 30001 of localhost using SSL encryption
+.
+Key Takeaways:
+Encrypted Handshakes: Mastered the use of openssl s_client to speak the "encrypted language" required by secure ports
+.
+Data Privacy: Learned that SSL/TLS provides certificates for server identification and encrypts traffic to prevent eavesdropping
+.
+Connection Management: Used the -ign_eof (Ignore End of File) flag to prevent the client from closing the connection before the server could reply
+.
+Command: openssl s_client -connect localhost:30001 -ign_eof
+Password Captured: kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
