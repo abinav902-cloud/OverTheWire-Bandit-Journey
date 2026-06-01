@@ -117,3 +117,23 @@ Connection Management: Used the -ign_eof (Ignore End of File) flag to prevent th
 .
 Command: openssl s_client -connect localhost:30001 -ign_eof
 Password Captured: kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+Bandit Level 16 → Level 17
+Goal: Identify the correct SSL service in a port range (31000-32000) and retrieve an RSA key for the next level
+.
+Key Tools & Commands:
+Nmap (-A flag): Enabled aggressive service detection to identify which port was "speaking" SSL and which was the target service
+.
+chmod: Used chmod 600 to restrict permissions on the retrieved RSA key so it could be used for SSH
+.
+SSH Identity: Used the -i flag to authenticate using a private key file instead of a password
+.
+Methodology:
+Scanned range: nmap -p 31000-32000 localhost
+Interrogated target: nmap -A -p <port> localhost
+.
+Retrieved key via openssl s_client.
+Saved key to a file and secured with chmod 600
+.
+Logged in: ssh -i bandit17.key bandit17@localhost -p 2220
+.
+Current Flag (Level 17): EReVavePLFHtFlFsjn3hyzMlvSuSAcRD
