@@ -137,3 +137,16 @@ Saved key to a file and secured with chmod 600
 Logged in: ssh -i bandit17.key bandit17@localhost -p 2220
 .
 Current Flag (Level 17): EReVavePLFHtFlFsjn3hyzMlvSuSAcRD
+Bandit Level 17 → Level 18
+Goal: Find the password for Level 18, which is the only line that has been changed between passwords.old and passwords.new
+.
+Key Tools & Commands:
+diff: Used to compare the two files and display the line-by-line differences
+.
+cat: Used (previously) to retrieve the physical password for Level 17 from /etc/bandit_pass/bandit17.
+Methodology:
+Identify the files: Confirmed the presence of passwords.old and passwords.new in the home directory.
+Compare content: Ran diff passwords.old passwords.new .
+Analyze output: The command identified the line removed from the first file (<) and the line added to the second file (>).
+Extract Flag: The line marked with > in the second file was the new password.
+Password for Level 18: x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO 
