@@ -149,4 +149,15 @@ Identify the files: Confirmed the presence of passwords.old and passwords.new in
 Compare content: Ran diff passwords.old passwords.new .
 Analyze output: The command identified the line removed from the first file (<) and the line added to the second file (>).
 Extract Flag: The line marked with > in the second file was the new password.
-Password for Level 18: x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO 
+Password for Level 18: x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+Bandit Level 18 → Level 19
+Goal: Retrieve the password for Level 19 from the readme file in the home directory of user bandit18.
+The Challenge: The user account has a modified .bashrc file that prints "Byebye!" and terminates the SSH connection immediately upon login.
+Key Tools & Concepts:
+SSH Command Arguments: Passing a command as an argument to SSH to execute it on the remote host without starting an interactive shell.
+Shell Initialization: Understanding that .bashrc only triggers for interactive login shells.
+Methodology:
+Direct Execution: Ran the command: ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme ].
+Authentication: Provided the password for Level 18: x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO .
+Result: The server printed the contents of readme and closed the connection, bypassing the logout trap.
+Password for Level 19: cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8 .
