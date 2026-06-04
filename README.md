@@ -161,3 +161,14 @@ Direct Execution: Ran the command: ssh bandit18@bandit.labs.overthewire.org -p 2
 Authentication: Provided the password for Level 18: x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO .
 Result: The server printed the contents of readme and closed the connection, bypassing the logout trap.
 Password for Level 19: cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8 .
+Bandit Level 19 → Level 20
+Goal: Retrieve the password for Level 20 stored in /etc/bandit_pass/bandit20.
+The Challenge: User bandit19 lacks read access to the target file. The solution requires using a SetUID binary in the home directory .
+Key Tools & Concepts:
+SetUID Binary: A file with the Set User ID bit set (visible as s in ls -l), which runs with the owner's privileges.
+bandit20-do: A "wrapper" binary owned by bandit20 that executes user-provided commands with elevated permissions.
+Methodology:
+Identify the Binary: Ran ls -l to locate ./bandit20-do and confirmed the s bit in its permissions .
+Execute with Privilege: Used the binary to read the protected file: ./bandit20-do cat /etc/bandit_pass/bandit20.
+Result: The command printed the password for Level 20 by leveraging the binary owner's access rights.
+Password for Level 20: 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO.
