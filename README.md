@@ -172,3 +172,15 @@ Identify the Binary: Ran ls -l to locate ./bandit20-do and confirmed the s bit i
 Execute with Privilege: Used the binary to read the protected file: ./bandit20-do cat /etc/bandit_pass/bandit20.
 Result: The command printed the password for Level 20 by leveraging the binary owner's access rights.
 Password for Level 20: 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO.
+Bandit Level 20 → Level 21
+Goal: Retrieve the password for Level 21 using the suconnect binary in the home directory.
+The Challenge: The binary is a SetUID program that connects to a specified localhost port, reads the current level's password from that connection, and (if correct) transmits the next level's password back through the same connection.
+Key Tools & Concepts:
+Netcat (nc): Used to create a network listener that acts as a temporary server .
+SetUID Binaries: Programs that run with the file owner's permissions (in this case, bandit21).
+Multi-Terminal Interaction: Opening two simultaneous SSH sessions to perform a "handshake" .
+Methodology:
+Terminal A (The Listener): Started a Netcat listener on a random port (e.g., nc -l -p 1234) .
+Terminal B (The Client): Ran the SetUID binary and instructed it to connect to the listener: ./suconnect 1234 .
+The Handshake: In Terminal A, provided the Bandit 20 password. The binary in Terminal B received it, verified it, and printed the password for Level 21 .
+Password for Level 21: EeoULMCra2q0dSkYj561DX7s1CpBuOBt.
