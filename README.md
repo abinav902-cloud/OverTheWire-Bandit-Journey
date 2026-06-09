@@ -184,3 +184,25 @@ Terminal A (The Listener): Started a Netcat listener on a random port (e.g., nc 
 Terminal B (The Client): Ran the SetUID binary and instructed it to connect to the listener: ./suconnect 1234 .
 The Handshake: In Terminal A, provided the Bandit 20 password. The binary in Terminal B received it, verified it, and printed the password for Level 21 .
 Password for Level 21: EeoULMCra2q0dSkYj561DX7s1CpBuOBt.
+Bandit Level 21 → Level 22
+Goal: Retrieve the password for Level 22 by investigating an automated process
+.
+Key Tools & Concepts:
+Cron: A time-based job scheduler in Unix-like systems
+.
+Directory Navigation: Investigated /etc/cron.d/ for system-wide task configurations
+.
+Shell Script Analysis: Read a .sh file to understand how it manipulated data and file permissions
+.
+Redirection (>): Identified how the script sent the password output to a temporary file
+.
+Methodology:
+Used ls /etc/cron.d/ to find the scheduled task named cronjob_bandit22
+.
+Used cat /etc/cron.d/cronjob_bandit22 to find the path of the script being executed: /usr/bin/cronjob_bandit22.sh
+.
+Inspected the script with cat, revealing that it copied the Level 22 password to a specific file in /tmp/
+.
+Read the temporary file to retrieve the password
+.
+Password for Level 22: tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q .
