@@ -206,3 +206,20 @@ Inspected the script with cat, revealing that it copied the Level 22 password to
 Read the temporary file to retrieve the password
 .
 Password for Level 22: tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q .
+Bandit Level 22 → Level 23
+Goal: Retrieve the password for Level 23 by reverse-engineering a dynamic automated process.
+Key Tools & Concepts:
+Cron: Utilized as a background scheduler to run scripts at 1-minute intervals
+.
+MD5sum: Used to generate a unique hash based on a specific string ("I am user bandit23")
+.
+Logic Emulation: Manually running script variables to identify hidden output locations.
+Methodology:
+Located the cron configuration in /etc/cron.d/cronjob_bandit23
+.
+Inspected the executable script: /usr/bin/cronjob_bandit23.sh
+.
+Analyzed the logic: The script identified its target filename by hashing the string "I am user $myname" .
+Executed the command manually to find the hash: echo I am user bandit23 | md5sum | cut -d ' ' -f 1 .
+Read the resulting file in /tmp/8ca319486bfbbc3663ea0fbe81326349 to retrieve the password .
+Password for Level 23: 0Zf11ioIjMVN551jX3CmStKLYqjk54Ga.
