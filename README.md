@@ -242,4 +242,35 @@ Created a workspace in /tmp/abi and granted full permissions.
 Wrote solve.sh to execute cat /etc/bandit_pass/bandit24 > /tmp/abi/password.txt .
 Copied the script to the spool folder and waited for the 60-second execution cycle
 .
-Password for Level 24: gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 
+Password for Level 24: gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
+Goal: Retrieve the password for Level 25 by brute-forcing a numeric 4-digit PIN against a network daemon listening on port 30002
+.
+Key Tools & Concepts:
+
+    Bash Scripting: Utilized a for loop to automate 10,000 combination attempts
+
+.
+Networking with Netcat: Used nc to establish a TCP connection to the service on port 30002
+.
+Piping: Employed the | operator to redirect the loop's generated output directly as input to the network command
+.
+Sequential Expansion: Leveraged the {0000..9999} syntax to handle 4-digit padding with leading zeros automatically
+
+    .
+
+Methodology:
+
+    Connected to the daemon on localhost 30002 using nc and confirmed it required the bandit24 password followed by a space and a PIN on a single line
+
+.
+Determined that manual entry was unfeasible for the 10,000 combinations (0000-9999)
+.
+Constructed a Bash one-liner script to generate the required input stream: for i in {0000..9999}; do echo "gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 $i"; done
+.
+Piped the results of the loop into the nc command: | nc localhost 30002
+.
+Monitored the output stream for the unique "Correct!" message containing the next level's credentials
+
+    .
+
+Password for Level 25: iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
