@@ -223,3 +223,23 @@ Analyzed the logic: The script identified its target filename by hashing the str
 Executed the command manually to find the hash: echo I am user bandit23 | md5sum | cut -d ' ' -f 1 .
 Read the resulting file in /tmp/8ca319486bfbbc3663ea0fbe81326349 to retrieve the password .
 Password for Level 23: 0Zf11ioIjMVN551jX3CmStKLYqjk54Ga.
+Bandit Level 23 → Level 24
+Goal: Retrieve the password for Level 24 by creating a shell script and hijacking an automated cron job
+.
+Key Tools & Concepts:
+Shell Scripting: Authored a .sh file with a bash shebang
+.
+Cron Jobs: Exploited a task-scheduler running as a higher-privileged user
+.
+File Permissions: Used chmod 777 to allow a multi-user write environment
+.
+Output Redirection: Used > to save command output to a specific file
+.
+Methodology:
+Analyzed the cron job configuration in /etc/cron.d/cronjob_bandit24.
+Inspected the execution script at /usr/bin/cronjob_bandit24.sh and found it executes and deletes files in /var/spool/bandit24/foo/ .
+Created a workspace in /tmp/abi and granted full permissions.
+Wrote solve.sh to execute cat /etc/bandit_pass/bandit24 > /tmp/abi/password.txt .
+Copied the script to the spool folder and waited for the 60-second execution cycle
+.
+Password for Level 24: gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 
