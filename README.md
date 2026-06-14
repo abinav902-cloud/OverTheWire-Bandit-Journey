@@ -274,3 +274,36 @@ Monitored the output stream for the unique "Correct!" message containing the nex
     .
 
 Password for Level 25: iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
+Bandit Level 25 → Level 26 Walkthrough
+Goal
+Log in as bandit26 and break out of the restricted shell to retrieve the password for Level 27
+.
+Key Takeaways
+
+    Shell Investigation: Users aren't always assigned /bin/bash. Some are assigned scripts that restrict their environment
+
+.
+Pager Interaction: The more command is interactive and can be used to launch external editors
+.
+Living off the Land: Using pre-installed tools (like Vim) to perform actions the administrator did not intend
+
+    .
+
+Technical Steps
+
+    Identify the Shell: Run getent passwd bandit26 from Level 25. The output shows /usr/bin/showtext as the login shell
+
+.
+The Connection: Used the RSA key found in the home directory: ssh -i bandit26.sshkey bandit26@localhost -p 2220
+.
+The Breakout:
+
+    Resize window: Shrink terminal to ~2 lines high.
+    Trigger Pager: Run the SSH command; the more prompt appears.
+    Escape to Vim: Press v.
+    Spawn Bash:
+
+Retrieve Password: cat /etc/bandit_pass/bandit26
+
+
+Password for Level 26:s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ
