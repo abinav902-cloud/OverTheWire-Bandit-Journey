@@ -307,3 +307,41 @@ Retrieve Password: cat /etc/bandit_pass/bandit26
 
 
 Password for Level 26:s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ
+🐧 OverTheWire Bandit: Level 26 → Level 27 Walkthrough
+Objective: Use a SetUID (SUID) binary to read the password for Level 27. Retrieved Password for Level 27: upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB 
+🛤️ The Setup
+After successfully breaking out of the restricted /usr/bin/showtext shell in Level 26, I gained a standard Bash prompt as bandit26 . My goal was to read the flag for the next level, which is restricted to the bandit27 user.
+🛠️ Tools & Concepts
+SUID (Set User ID)
+The directory contained a file named bandit27-do. This is a compiled binary with the SUID bit set
+.
+
+    Mechanism: When this binary is executed, it runs with the privileges of its owner (bandit27)
+
+    .
+    Help Hint: Running the binary without arguments revealed its usage: "Run a command as another user. Example: ./bandit27-do id" .
+
+The ./ Shortcut
+In Linux, the ./ characters are a path shortcut telling the system to look for the executable in the current working directory rather than searching global system paths .
+🔓 The Solution
+To retrieve the password, I used the SUID tool to execute the cat command on the protected file:
+
+bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit27
+
+Why this worked:
+
+    bandit26 executed the file.
+    The system saw the SUID bit and executed the process as bandit27.
+    As bandit27, the process had permission to read /etc/bandit_pass/bandit27.
+    The password was printed to the screen [1010, Conversation History].
+
+🚩 Result
+Level 27 Password: upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB
+Key Takeaways:
+
+    Recognizing SUID permissions using ls -l (the 's' bit)
+
+.
+Understanding how binaries can be used as "pass-through" tools for higher privileges
+.
+Executing files from the current directory using ./ .
